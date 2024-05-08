@@ -7,7 +7,7 @@ app = Flask(__name__)
 def hello():
     return 'Hello, World!'
 
-@app.router ("benja")
+@app.router ("Benja")
 def benja():
     return 'hala madrid!'
 
