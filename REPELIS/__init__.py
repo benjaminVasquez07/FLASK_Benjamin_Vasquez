@@ -10,3 +10,12 @@ def hello():
 @app.router ("benja")
 def benja():
     return 'hala madrid!'
+
+def create_app():
+    app = ...
+    # existing code omitted
+
+    from . import db
+    db.init_app(app)
+
+    return app
