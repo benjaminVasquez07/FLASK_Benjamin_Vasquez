@@ -4,7 +4,7 @@ import click
 from flask import current_app, g
 
 db_folder = current_app.instance_path
-db_name = 'peliculas.sqlide'
+db_name = 'peliculas.sqlite'
 db_file = os.path.join(db_folder, db_name)
 db_sql_file = 'datos.sql'
 
@@ -38,7 +38,7 @@ def close_db(e=None):
 def init_db():
     db = get_db()
 
-    with current_app.open_resource('schema.sql') as f:
+    with current_app.open_resource(db_sql_file) as f:
         db.executescript(f.read().decode('utf8'))
 
 
