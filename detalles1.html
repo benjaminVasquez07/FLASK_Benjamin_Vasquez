@@ -1,0 +1,11 @@
+{% extends 'detalles.html' %}
+{% block titulo %}Lista de Generos{% endblock %}
+{% block encabezado %} Generos {% endblock %}
+{% block contenido %}
+<ul>
+    {% for genero in genero %}
+        <li><a href="{{url_for('genero.detalle', id=genero['GenreId'])}}">
+        </a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
