@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block titulo %}Lista de lenguaje{% endblock %}
+{% block encabezado %} lenguaje {% endblock %}
+{% block contenido %}
+<ul>
+    {% for lenguaje in lenguaje %}
+        <li><a href="{{url_for('lenguaje.detalle', id=lenguaje['language_id'])}}">
+        </a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -3,7 +3,7 @@ from . import db
 
 bp = Blueprint('actor',__name__, url_prefix="/actores")
 
-bp.route('/')
+@bp.route('/')
 def actor():
     consulta = """
         SELEC first_name, last_name, actor_id FROM actor
@@ -13,27 +13,29 @@ def actor():
     con = db.get_db()
     res = con.Execute(consulta)
     lista_actores = res.fetchall()
-    paginaActor = render_template('actor.html',
+    paginaActor = render_template('actores.html',
                                 actores=lista_actores)
     return paginaActor
 
-@bp.route('/<int:id>')
+@bp.route('/<int:id>') 
 def actor(id):
     consulta = """
     SELEC first_name,last_name FROM actor
-    ORDER BY first_name ;
+   WHERE actor_id = ?;
     """
 
     con = db.get()
     res = con.execute(consulta,(id))
-    lista_actores = res.fetchone()
+    actor = res.fetchone()
     consulta2 = """
 
     """
 
     res = con.execute(consulta2,(id))
-    lista_actores = res.fetchall()
-    pagina = render_template('actores.html',
-                            actores=lista_actores)
+    lista_peliculas = res.fetchall()
+    pagina = render_template('detalle_actor.html',
+                            actor=actor,
+                            peliculas=lista_peliculas)
 
     return pagina
+
